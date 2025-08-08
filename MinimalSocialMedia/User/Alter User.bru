@@ -1,0 +1,22 @@
+meta {
+  name: Alter User
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8081/users/2
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Jubileu Agostini",
+    "email": "jubileu.agostini@gmail.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

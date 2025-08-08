@@ -1,0 +1,22 @@
+meta {
+  name: Create New Post
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8081/posts
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "content": "Hoje é sexta!",
+    "authorId" : 2
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,22 @@
+meta {
+  name: Create New Like
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8081/likes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "userId": 3,
+    "postId": 78
+  }
+}
+
+settings {
+  encodeUrl: true
+}

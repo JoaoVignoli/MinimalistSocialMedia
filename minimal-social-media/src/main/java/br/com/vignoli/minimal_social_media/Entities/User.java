@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -16,10 +18,13 @@ public class User {
     private LocalDate registerDate;
 
     @OneToMany(mappedBy = "author", cascade=CascadeType.ALL)
+    @JsonIgnore
     private List<Post> userPosts = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
+    @JsonIgnore
     private List<Like> userLikes = new ArrayList<>();
     @OneToMany(mappedBy = "author", cascade=CascadeType.ALL)
+    @JsonIgnore
     private List<Comment> userComments = new ArrayList<>();
 
 
