@@ -1,8 +1,10 @@
-package main.java.br.com.vignoli.minimal_social_media.Entities;
+package br.com.vignoli.minimal_social_media.Entities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.*;
 
 @Entity
 public class User {
@@ -10,15 +12,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Strign email;
+    private String email;
     private LocalDate registerDate;
 
-    @OneToMany(mappedBy = "User", cascade=CascadeType.ALL)
-    private ArrayList<Post> userPosts = new ArrayList<>();
-    @OneToMany(mappedBy = "User", cascade=CascadeType.ALL)
-    private ArrayList<Like> userLikes = new ArrayList<>();
-    @OneToMany(mappedBy = "User", cascade=CascadeType.ALL)
-    private ArrayList<Comment> userComments = new ArrayList<>();
+    @OneToMany(mappedBy = "author", cascade=CascadeType.ALL)
+    private List<Post> userPosts = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
+    private List<Like> userLikes = new ArrayList<>();
+    @OneToMany(mappedBy = "author", cascade=CascadeType.ALL)
+    private List<Comment> userComments = new ArrayList<>();
 
 
     public int getId() {
@@ -37,11 +39,11 @@ public class User {
         this.name = name;
     }
 
-    public Strign getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Strign email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -52,26 +54,26 @@ public class User {
         this.registerDate = registerDate;
     }
 
-    public ArrayList<Post> getUserPosts() {
+    public List<Post> getUserPosts() {
         return userPosts;
     }
 
-    public void setUserPosts(ArrayList<Post> userPosts) {
+    public void setUserPosts(List<Post> userPosts) {
         this.userPosts = userPosts;
     }
-    public ArrayList<Like> getUserLikes() {
+    public List<Like> getUserLikes() {
         return userLikes;
     }
 
-    public void setUserLikes(ArrayList<Like> userLikes) {
+    public void setUserLikes(List<Like> userLikes) {
         this.userLikes = userLikes;
     }
 
-    public ArrayList<Comment> getUserComments() {
+    public List<Comment> getUserComments() {
         return userComments;
     }
 
-    public void setUserComments(ArrayList<Comment> userComments) {
+    public void setUserComments(List<Comment> userComments) {
         this.userComments = userComments;
     }
     
