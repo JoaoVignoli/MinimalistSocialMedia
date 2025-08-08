@@ -1,5 +1,11 @@
 package br.com.vignoli.minimal_social_media.Dtos;
 
-public record CommentResponseDto() {
+import java.time.LocalDateTime;
 
-}
+public record CommentResponseDto(
+    Integer id,
+    Integer authorId,
+    Integer postId,
+    String text,
+    LocalDateTime createdAt
+) {}
