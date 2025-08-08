@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 
 import br.com.vignoli.minimal_social_media.Dtos.PostResponseDto;
 import br.com.vignoli.minimal_social_media.Dtos.UserResposeDto;
-import br.com.vignoli.minimal_social_media.Dtos.UserRequestDto;
+import br.com.vignoli.minimal_social_media.Dtos.UserResquestDto;
 import br.com.vignoli.minimal_social_media.Entities.User;
 import br.com.vignoli.minimal_social_media.Repositories.PostRepository;
 import br.com.vignoli.minimal_social_media.Repositories.UserRepository;
@@ -38,7 +38,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserResposeDto> createUser (
-       @RequestBody UserRequestDto request
+       @RequestBody UserResquestDto request
     ) {
         User userSave = new User();
         userSave.setName(request.name());
@@ -86,7 +86,7 @@ public class UserController {
     }
     
     @PutMapping("/{userId}")
-    public ResponseEntity<Object> alterUser(@PathVariable Integer userId, @RequestBody UserRequestDto entity) {
+    public ResponseEntity<Object> alterUser(@PathVariable Integer userId, @RequestBody UserResquestDto entity) {
         
         Optional<User> userAlter = this.userRepository.findById(userId);
         

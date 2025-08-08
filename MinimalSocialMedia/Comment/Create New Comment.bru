@@ -1,0 +1,23 @@
+meta {
+  name: Create New Comment
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8081/comments
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "authorId": 2,
+    "postId" : 3,
+    "text" : "Não hoje é um dia tremendamente triste."
+  }
+}
+
+settings {
+  encodeUrl: true
+}

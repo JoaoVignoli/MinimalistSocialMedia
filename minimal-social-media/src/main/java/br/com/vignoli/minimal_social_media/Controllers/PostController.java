@@ -3,6 +3,8 @@ package br.com.vignoli.minimal_social_media.Controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.vignoli.minimal_social_media.Dtos.CommentResponseDto;
+import br.com.vignoli.minimal_social_media.Dtos.LikeResponseDto;
 import br.com.vignoli.minimal_social_media.Dtos.PostRequestDto;
 import br.com.vignoli.minimal_social_media.Dtos.PostResponseDto;
 import br.com.vignoli.minimal_social_media.Entities.Post;
@@ -19,6 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -92,13 +95,30 @@ public class PostController {
     }
     
     
-//    @GetMapping("/{postId}/likes")
-//    public String getPostLikes(@PathVariable Integer postId) {
-//        
-//    }
+    @GetMapping("/{postId}/likes")
+    public ResponseEntity<List<LikeResponseDto>> getPostLikes(@PathVariable Integer postId) {
+        Optional<Post> post = this.postRepository.findById(postId);
+        
+        if (post.isEmpty()) {
+            Map<String, Object> postError = new HashMap<>();
+            postError.put("message", "Post not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(this.likeRepository.findAllByPost_Id(postId));
+
+    }
     
-//    @GetMapping("/{postId}/comments")
-//    public String getPostComments(@PathVariable Integer postId) {
-//        
-//    }
+    @GetMapping("/{postId}/comments")
+    public ResponseEntity<List<?>> getPostComments(@PathVariable Integer postId) {
+        Optional<Post> post = this.postRepository.findById(postId);
+        
+        if (post.isEmpty()) {
+            Map<String, Object> postError = new HashMap<>();
+            postError.put("message", "Post not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    
+        return ResponseEntity.status(HttpStatus.OK).body(this.commentRepository.findAllByPost_Id(postId));
+    }
 }
