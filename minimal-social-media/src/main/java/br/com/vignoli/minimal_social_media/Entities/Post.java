@@ -1,8 +1,12 @@
-package main.java.br.com.vignoli.minimal_social_media.Entities;
+package br.com.vignoli.minimal_social_media.Entities;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Post {
@@ -15,10 +19,12 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User author;
 
-    @OneToMany(mappedBy = "Post", cascade=CascadeType.ALL)
-    private ArrayList<Like> postLikes = new ArrayList<>();
-    @OneToMany(mappedBy = "Post", cascade=CascadeType.ALL)
-    private ArrayList<Comment> postComments = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "post", cascade=CascadeType.ALL)
+    private List<Like> postLikes = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "post", cascade=CascadeType.ALL)
+    private List<Comment> postComments = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -52,19 +58,19 @@ public class Post {
         this.author = author;
     }
 
-    public ArrayList<Like> getPostLikes() {
+    public List<Like> getPostLikes() {
         return postLikes;
     }
 
-    public void setPostLikes(ArrayList<Like> postLikes) {
+    public void setPostLikes(List<Like> postLikes) {
         this.postLikes = postLikes;
     }
 
-    public ArrayList<Comment> getPostComments() {
+    public List<Comment> getPostComments() {
         return postComments;
     }
 
-    public void setPostComments(ArrayList<Comment> postComments) {
+    public void setPostComments(List<Comment> postComments) {
         this.postComments = postComments;
     }
 
