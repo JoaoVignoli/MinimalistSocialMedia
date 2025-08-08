@@ -3,7 +3,6 @@ package br.com.vignoli.minimal_social_media.Controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.vignoli.minimal_social_media.Dtos.CommentResponseDto;
 import br.com.vignoli.minimal_social_media.Dtos.LikeResponseDto;
 import br.com.vignoli.minimal_social_media.Dtos.PostRequestDto;
 import br.com.vignoli.minimal_social_media.Dtos.PostResponseDto;
